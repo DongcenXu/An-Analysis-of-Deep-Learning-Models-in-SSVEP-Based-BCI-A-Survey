@@ -21,6 +21,6 @@ g.fig.set_figwidth(5.5)
 g.fig.set_figheight(5)
 current_values = plt.gca().get_xticks()
 plt.gca().set_xticklabels(['{:,.0f}'.format(x) for x in current_values])
-plt.savefig('1.tiff', dpi=300)
-files.download('1.tiff')
+plt.savefig('2_A.tiff', dpi=300)
+files.download('2_A.tiff')
 
