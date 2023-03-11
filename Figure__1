@@ -1,0 +1,78 @@
+import seaborn as sns 
+import pandas as pd
+import matplotlib.pyplot as plt
+from google.colab import files
+
+sns.set_theme()
+index_2=['Random sequence generation (Selection bias)','Allocation concealment (Selection bias)',
+           'Blinding of participants and personnel (Performance bias)','Blinding of outcome assessment (Detection bias)',
+           'Incomplete outcome data (Attrition bias)',
+           'Selective outcome reporting (Reporting bias)'
+           ],
+
+data = {
+'index_1': ['Cecotti','Bevilacqua','Thomas','Kwak','Aznan','Lawhern',
+      'Waytowich','Nguyen','Kobayashi','Podmor','Ravi','Li',
+      'Ravi','Dang','Bassi','Zhu','Guney','Ding','Pan',
+      'Li','Li','Chen','Zhao','Avci','Bhuvaneshwari',
+      'Israsena','Macias','Zhang','Yao','Xiao','Paula'],
+
+
+'Random sequence generation (Selection bias)':['low','low','high','low','low','high',
+     'low','low','low','low','low','low',
+     'low','low','low','low','low','low','low',
+     'low','unclear','low','low','low','high',
+     'low','low','low','low','low','low'],                                                 
+                                                      
+'Allocation concealment (Selection bias)':['unclear','unclear','high','unclear','unclear','high',
+    'low','low','low','low','low','low',
+    'low','low','low','low','low','low','low',
+    'low','unclear','low','low','low','high',
+    'low','low','low','low','low','low'],
+
+'Blinding of participants and personnel (Performance bias)':['high','high','high','high','high','high',
+    'low','low','unclear','unclear','low','unclear',
+    'low','unclear','unclear','unclear','low','low','low',
+    'unclear','unclear','low','unclear','unclear','high',
+    'unclear','unclear','low','low','low','unclear'],
+    
+'Blinding of outcome assessment (Detection bias)':['high','high','high','high','high','high',
+    'low','low','unclear','unclear','low','unclear',
+   'low','unclear','unclear','unclear','low','low','low',
+   'unclear','unclear','low','unclear','unclear','high',
+   'unclear','unclear','low','low','low','unclear'
+   ],
+
+'Incomplete outcome data (Attrition bias)':['low','low','high','low','low','high',
+    'low','low','high','high','low','low',
+    'low','low','low','low','low','low','low',
+    'low','high','low','low','low','high',
+    'low','low','low','low','low','low'],
+
+'Selective outcome reporting (Reporting bias)':['low','low','high','low','low','high',
+    'low','low','low','low','low','low',
+    'low','low','low','low','low','low','low',
+    'low','high','low','low','low','high',
+    'low','low','low','low','low','low'],         
+}
+
+
+df = pd.DataFrame(data)
+
+#print(df.head(1))
+sns.set_theme(font='Serif')
+plt.rcParams["figure.figsize"] = [10, 10]
+plt.rcParams["figure.autolayout"] = True
+fig, axes =plt.subplots(3,2)
+
+fig.subplots_adjust(hspace=0.5, wspace=0.2)
+order = ['low', 'unclear', 'high']
+#g=sns.histplot(data=df)
+g=sns.countplot(df['Random sequence generation (Selection bias)'], ax=axes[0,0],order=order,palette=['#5c9665',"#f8db5e",'#ea3c12'])
+g=sns.countplot(df['Allocation concealment (Selection bias)'], ax=axes[0,1],order=order,palette=['#5c9665',"#f8db5e",'#ea3c12'])
+g=sns.countplot(df['Blinding of participants and personnel (Performance bias)'], ax=axes[1,0],order=order,palette=['#5c9665',"#f8db5e",'#ea3c12'])
+g=sns.countplot(df['Blinding of outcome assessment (Detection bias)'], ax=axes[1,1],order=order,palette=['#5c9665',"#f8db5e",'#ea3c12'])
+g=sns.countplot(df['Incomplete outcome data (Attrition bias)'], ax=axes[2,0],order=order,palette=['#5c9665',"#f8db5e",'#ea3c12'])
+g=sns.countplot(df['Selective outcome reporting (Reporting bias)'], ax=axes[2,1],order=order,palette=['#5c9665',"#f8db5e",'#ea3c12'])
+plt.savefig('1.tiff', dpi=300)
+files.download('1.tiff')
