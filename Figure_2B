@@ -19,5 +19,5 @@ df = pd.DataFrame(EEG_kernel)
 sns.set_theme(font='Serif',font_scale=1.3)
 
 sns.jointplot(data=df,x='kernel dimension 1',y='kernel dimension 2')
-plt.savefig('2.tiff', dpi=300)
-files.download('2.tiff')
+plt.savefig('2_B.tiff', dpi=300)
+files.download('2_B.tiff')
