@@ -1,0 +1,26 @@
+import seaborn as sns 
+import pandas as pd
+import matplotlib.pyplot as plt
+from google.colab import files
+
+sns.set_theme()
+
+#EEG_data = {'EEG data length(seconds)':[2500,480,7200,40500,6000,7200,108,
+#1680,9000,42000,21780,60750,4704,7200,3200,4800,4686,42000,42000,31200,7200,
+#42000,7056,7200,4800,1440,400,42000,456,7200,42000,31200]}
+
+EEG_data = {'EEG data length(seconds)':[6000,576,2500,480,7200,1680,400,9000,4704,7200,42000,7056,7200,4800,42000,21780,42000,
+      31200,3360,21600,7200,3200,4800,7200,42000,60750,1440,42000,456,42000,24480,7200,40500,7200,42000,31200,4686]}
+
+df = pd.DataFrame(EEG_data)
+
+sns.set_theme(font='Serif')
+
+g = sns.displot(data=EEG_data, x="EEG data length(seconds)")
+g.fig.set_figwidth(5.5)
+g.fig.set_figheight(5)
+current_values = plt.gca().get_xticks()
+plt.gca().set_xticklabels(['{:,.0f}'.format(x) for x in current_values])
+plt.savefig('1.tiff', dpi=300)
+files.download('1.tiff')
+
