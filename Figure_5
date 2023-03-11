@@ -1,0 +1,36 @@
+import seaborn as sns 
+import pandas as pd
+import matplotlib.pyplot as plt
+from google.colab import files
+
+sns.set_theme()
+
+EEG_pooling = {
+'Year':['2011','2014','2017','2017','2018','2018','2018','2018',
+            '2019','2019','2019','2020','2020','2021','2021',
+        '2021','2021','2021','2022','2022','2022','2022',
+        '2022','2022','2022','2022','2022','2022','2022','2022','2023'],
+
+'Pooling or dropout':['No','No','Dropout','No','Both','Both','Both','Pooling','Dropout',
+            'Pooling','Dropout','No','Dropout','Both','Both',
+            'Both','Dropout','Dropout','Dropout','Both','Dropout','Dropout',
+            'Both','NM','Both','Both','No','No','Both','Dropout','NM'],
+'Training':['NM','GD','NM','GD','Adam','Adam','Adam','Adam',
+            'Adam','Adam','SGD','Adam','SGD','Adam','SGD',
+            'Adam','Adam','Adam','Adam','NM','Adam','SGD',
+            'GD','NM','Adam','Adam','Adam','Adam','Adam','Adam','SGD'],
+'Activation function':['Sigmoid','Sigmoid','ReLU','Sigmoid','ReLU','ELU','ELU','ReLU',
+            'NM','ReLU','ReLU','No','ReLU','ReLU','ReLU',
+            'ELU','ReLU','ELU','PReLU','ReLU','ReLU','GELU',
+            'ReLU','NM','NM','ReLU','ReLU','Sigmoid','Sigmoid','Tanh','NM']           
+}
+
+df = pd.DataFrame(EEG_pooling)
+df.head()
+sns.set_theme(font='Serif')
+
+g=sns.catplot(data=df, x="Year", y="Activation function",kind="swarm")
+g.fig.set_figwidth(7)
+g.fig.set_figheight(4)
+plt.savefig('5.tiff', dpi=300)
+files.download('5.tiff')
